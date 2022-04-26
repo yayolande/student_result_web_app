@@ -1,0 +1,618 @@
+<style>
+   @font-face {
+      font-family: "proxima-nova";
+      src: url(file:///home/steveen/cs_project/proxima_ssv/ProximaNova-Regular.otf );
+   }
+
+   body {
+      font-family: "proxima-nova", arial;
+      background-color: #f8f8f8;
+   }
+   table {
+      border-collapse: collapse;
+      border: 1px solid #d6d6d6;
+      background-color: #fff;
+      margin: 0 auto;
+   }
+
+   thead > tr > td {
+      font-weight: bold;
+      cursor: pointer;
+   }
+
+   tbody > tr > td {
+      color: #5E6264;
+   }
+
+   td {
+      /*border: 1px solid rgb(190, 190, 190);
+      */
+      border-top: 1px solid #d6d6d6;
+      text-align: center;
+      padding: 15px 25px;
+   }
+
+   tr:nth-child(even) {
+      background-color: #f7f6f5;
+   }
+
+   .grade-a {
+      background-color: #E4F8E1;
+   }
+
+   .grade-b {
+      background-color: #FFF3D4;
+      /* background-image: linear-gradient(to bottom right,rgba(246,183,60,.3) 0,rgba(246,183,60,.3) 1px,transparent 1px,transparent 67px,rgba(246,183,60,.3) 67px,rgba(246,183,60,.3) 73px,transparent 73px,transparent 138px,rgba(246,183,60,.3) 138px,rgba(246,183,60,.3) 144px,transparent 144px);
+      background-size: 100px 100px;
+      background-position: 50% 50%; */
+   }
+
+   .grade-f {
+      background-color: #F8E1E1;
+      /* background-image: linear-gradient(to bottom right,rgba(230,100,101,.2) 0,rgba(230,100,101,.2) 1px,transparent 1px,transparent 67px,rgba(230,100,101,.2) 67px,rgba(230,100,101,.2) 73px,transparent 73px,transparent 138px,rgba(230,100,101,.2) 138px,rgba(230,100,101,.2) 144px,transparent 144px),linear-gradient(to bottom left,rgba(230,100,101,.2) 0,rgba(230,100,101,.2) 1px,transparent 1px,transparent 67px,rgba(230,100,101,.2) 67px,rgba(230,100,101,.2) 73px,transparent 73px,transparent 138px,rgba(230,100,101,.2) 138px,rgba(230,100,101,.2) 144px,transparent 144px);
+      background-size: 100px 100px,100px 100px;
+      background-position: 50% 50%,50% 50%; */
+   }
+
+   #demo {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+      padding: 15px 20px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      color: #4d4d4d;
+   }
+
+   #demo:focus {
+      outline: 0;
+      border-color: #34b8ff;
+      box-shadow: 0 1px 4px rgba(30, 120, 230, 0.3);
+   }
+
+   .tab-links {
+      display: inline-block;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #4d4d4d;
+   }
+
+   .city-tab {
+      display: none;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #333;
+   }
+
+   .active {
+      background-color: #f1f0ef;
+      outline: 0;
+   }
+
+   .main-items {
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 20px;
+   }
+
+   .menu-category {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+   }
+
+   .search-category {
+      padding-bottom: 20px;
+   }
+
+   .menu-category > li {
+      display: inline-block;
+      float: none;
+   }
+
+   .menu-category a {
+      display: block;
+      text-decoration: none;
+      color: #9b9b9b ;
+      font-size: 18px;
+      /*
+      text-transform: uppercase;
+      font-weight: bold;
+      */
+      border-bottom: 3px solid transparent;
+      padding-bottom: 20px;
+      margin-right: 50px;
+   }
+
+   a.active-t {
+      border-color: #502784;
+      color: #502784;
+   }
+
+   .menu-category a:visited {
+      text-decoration: none;
+      border: 0;
+      outline: 0;
+   }
+
+   .legend-table {
+      display: none;
+   }
+
+   .main {
+      width: 90%;
+      padding: 20px;
+      margin: 0 auto;
+      background-color: #fff;
+   }
+
+   .table-tab {
+      display: none;
+   }
+</style>
+
+<!-- Tab -->
+<div class="main">
+   <div class="submenu main-items">
+      <ul class="menu-category">
+         <li><a onclick="open_tab(event, 'tab-a')" class="menu-links active-t" href="#">Computer Science</a></li>
+         <li><a onclick="open_tab(event, 'tab-b')" class="menu-links" href="#">Chemical Engeniering</a></li>
+         <li><a onclick="open_tab(event, 'tab-c')" class="menu-links" href="#">Electrical Engeniering</a></li>
+      </ul>
+   </div>
+
+   <div class="search-table main-items">
+      <div class="search-category">
+         <!-- Search bar -->
+         <input type="text" placeholder="Enter name ..." id="demo" onkeyup="filter_list()">
+      </div>
+   </div>
+
+   <div class="legend-table main-items">
+   </div>
+
+   <div class="container-table">
+      <!-- Start table -->
+      <div id="tab-a" class="table-tab ">
+         <table>
+            <thead>
+               <tr>
+                  <td>Name</td>
+                  <td>Maths</td>
+                  <td>Physics</td>
+                  <td>Informatic</td>
+                  <td>Term</td>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Steve Djumo</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Terry Jonhson</td>
+                  <td>20</td>
+                  <td>12</td>
+                  <td>17</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Mathias Leblanc</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>13</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Kvotanik Atlar</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Stephen Walker</td>
+                  <td>18</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Harry Frost</td>
+                  <td>16</td>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+            </tbody>
+         </table>
+         </div>
+      <div id="tab-b" class="table-tab ">
+         <table>
+            <thead>
+               <tr>
+                  <td>Name</td>
+                  <td>Maths</td>
+                  <td>S.V.T</td>
+                  <td>Chemistry</td>
+                  <td>Term</td>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Steve Tich</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Terry Rich</td>
+                  <td>20</td>
+                  <td>12</td>
+                  <td>17</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Kim Possible</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>13</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Iris Mustang</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>James Edisson</td>
+                  <td>18</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Forest Gump</td>
+                  <td>16</td>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+            </tbody>
+         </table>
+         </div>
+      <div id="tab-c" class="table-tab ">
+         <table>
+            <thead>
+               <tr>
+                  <td>Name</td>
+                  <td>French</td>
+                  <td>Language</td>
+                  <td>English</td>
+                  <td>Term</td>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Sierra Tich</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Bobby Rich</td>
+                  <td>20</td>
+                  <td>12</td>
+                  <td>17</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Damian Possible</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>13</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Clark Orelus</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Kara Washington</td>
+                  <td>18</td>
+                  <td>12</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+               <tr>
+                  <td>Irma Takota</td>
+                  <td>16</td>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>Autumn 19</td>
+               </tr>
+            </tbody>
+         </table>
+         </div>
+      <div id="test-a">
+         <table>
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<script>
+   var freshmen_cs = { header : [ {name: "Rank" },
+                                  {name: "Name" },
+                                  {name: "CSE 1301", title: "Programming and problem solving I", credit: 4, passingGrade: 'B'},
+                                  {name: "MTH 1190", title: "Calculus I", credit: 4, passingGrade: 'B'},
+                                  {name: "CHE 1000", title: "Chemistry", credit: 3, passingGrade: 'B'},
+                                  {name: "COM 2400", title: "Public Speaking", credit: 3, passingGrade: 'B'},
+                                  {name: "ENG 1101", title: "Composition I", credit: 3, passingGrade: 'B'},
+                                  {name: "ART 1000", title: "African Art and Culture", credit: 3, passingGrade: 'B'},
+                                  {name: "LED 1101", title: "Critical Thinking", credit: 1, passingGrade: 'B'}],
+                       body : [ {rank: 0, name: "Steve D.", cse: 0, mth: 88, che: 7, com: 88, eng: 87, art: 94, led: 99},
+                                {rank: 0, name: "Yasmine B.", cse: 74, mth: 78, che: 85, com: 99, eng: 91, art: 88, led: 64},
+                                {rank: 0, name: "Junior N.", cse: 80, mth: 82, che: 89, com: 88, eng: 84, art: 84, led: 80},
+                                {rank: 0, name: "Karine T.", cse: 90, mth: 86, che: 92, com: 81, eng: 97, art: 84, led: 90},
+                                {rank: 0, name: "Florian L.", cse: 83, mth: 88, che: 99, com: 71, eng: 81, art: 79, led: 80},
+                                {rank: 0, name: "Bradley T.", cse: 87, mth: 71, che: 72, com: 80, eng: 85, art: 84, led: 94},
+                                {rank: 0, name: "Maurice N.", cse: 100, mth: 100, che: 100, com: 100, eng: 100, art: 100, led: 100},
+                                {rank: 0, name: "Marcy", cse: 87, mth: 81, che: 82, com: 80, eng: 85, art: 84, led: 91} ]
+                     };
+
+   function filter_list () {
+      var input = document.getElementById('demo');
+      var search_val = input.value.toUpperCase();
+      var search_target;
+
+      var tbody = document.getElementsByTagName('tbody');
+      var i, tr;
+
+      for (var j = 0; j < tbody.length; j++) {
+         tr = tbody[j].getElementsByTagName ('tr');
+         for (i = 0; i < tr.length; i++ ) {
+            search_target = tr[i].getElementsByTagName('td')[1];
+            search_target = search_target.textContent || search_target.innerHTML;
+            // I could have used .includes() instead of indexOf()
+            if ( search_target.toUpperCase().indexOf(search_val) != -1  )
+               tr[i].style.display = "";
+            else
+               tr[i].style.display = "none";
+
+         }
+      }
+   }
+
+   function open_tab (event, tab_name) {
+
+      var tab_to_hide = document.getElementsByClassName ('table-tab');
+      var i;
+      for (i=0; i < tab_to_hide.length; i++)
+         tab_to_hide[i].style.display = "none";
+
+      var menu_links = document.getElementsByClassName ('menu-links');
+      for (i=0; i < menu_links.length; i++)
+         menu_links[i].className = menu_links[i].className.replace (' active-t', '');
+
+      var tab = document.getElementById (tab_name);
+      tab.style.display = "block";
+      event.currentTarget.className += ' active-t';
+   }
+
+
+   // ************************
+   // Start table manipulation
+   // ************************
+
+   function init_data_table () {
+      var grade, overallPerformance, countCourses;
+
+      for (var i = 0; i < freshmen_cs.body.length; i++) {
+         countCourses = 0;
+         overallPerformance = 0;
+         grade = 0;
+
+         for (var key in  freshmen_cs.body[i]) {
+            if (! freshmen_cs.body[i].hasOwnProperty (key))
+               continue;
+
+            if ( key != "name" && key != "rank" ) {
+               grade = Math.floor ((freshmen_cs.body[i][key] - 50) / 10);
+
+               grade = ( grade < 0 ) ? 0 : grade;
+               overallPerformance += grade;
+
+               freshmen_cs.body[i][key] = [freshmen_cs.body[i][key], grade];
+               countCourses ++;
+            }
+         }
+
+         overallPerformance /= countCourses;
+         overallPerformance = (Math.floor (overallPerformance * 10)) / 10;
+         freshmen_cs.body[i].rank = overallPerformance;
+         console.log (overallPerformance);
+
+         // [rank, GPA_grade]
+         freshmen_cs.body[i]["rank"] = [freshmen_cs.body[i]["rank"], 0];
+      }
+   }
+
+   function print_thead (thead, header_arr) {
+      var tr, td, msg;
+      tr = document.createElement ('tr');
+      thead.appendChild (tr);
+
+      for (var i=0; i < header_arr.length; i++) {
+         td = document.createElement ('td');
+         msg = document.createTextNode (header_arr[i].name);
+
+         td.appendChild (msg);
+         tr.appendChild (td);
+      }
+
+      tr = thead.getElementsByTagName ('tr')[0];
+      tr.firstElementChild.setAttribute ('onclick', 'display_sorted_gpa_table ("rank")'); // Element "Rank"
+      tr.children[1].setAttribute ('onclick', 'display_unfiltered_table ()'); // Element "Name"
+      tr.children[2].setAttribute ('onclick', 'display_sorted_gpa_table ("cse")'); // Element "Name"
+      tr.children[3].setAttribute ('onclick', 'display_sorted_gpa_table ("mth")'); // Element "Name"
+      tr.children[4].setAttribute ('onclick', 'display_sorted_gpa_table ("che")'); // Element "Name"
+      tr.children[5].setAttribute ('onclick', 'display_sorted_gpa_table ("com")'); // Element "Name"
+      tr.children[6].setAttribute ('onclick', 'display_sorted_gpa_table ("eng")'); // Element "Name"
+      tr.children[7].setAttribute ('onclick', 'display_sorted_gpa_table ("art")'); // Element "Name"
+      tr.children[8].setAttribute ('onclick', 'display_sorted_gpa_table ("led")'); // Element "Name"
+   }
+
+   function print_tbody (tbody, body_obj) {
+      var tr, td, msg, gradeClass, grade, overallPerformance, data;
+
+      tr = document.createElement ('tr');
+      tbody.appendChild (tr);
+
+      for (var key in  body_obj) {
+         if (! body_obj.hasOwnProperty (key))
+            continue;
+
+
+         // Styling section : set the appropriate class to 'td' element
+         gradeClass = "";
+         data = body_obj[key];
+
+         if ( key == "rank" ) {
+            data = body_obj[key][0];
+            overallPerformance = data;
+
+            if ( overallPerformance >= 3 ) gradeClass = "grade-a";
+            else if ( overallPerformance >= 2.5 ) gradeClass = "grade-b";
+            else  gradeClass = "grade-f";
+         }
+         else if ( key != "name" && key != "rank" ) {
+            data = body_obj[key][0];
+            grade = body_obj[key][1];
+
+            if ( grade >= 4 )   gradeClass = "grade-a";
+            else if ( grade >= 3 )   gradeClass = "grade-b";
+            else if ( grade >= 2 )   gradeClass = "grade-f";
+            else   gradeClass = "grade-f";
+         }
+
+         td = document.createElement ('td');
+         msg = document.createTextNode (data);
+         td.appendChild (msg);
+         tr.appendChild (td);
+
+         if ( gradeClass.length > 0 )
+            td.className = gradeClass;
+      }
+   }
+
+   function display_unfiltered_table () {
+      var table = document.getElementById ('test-a');
+      var thead = table.getElementsByTagName ('thead')[0];
+      var tbody = table.getElementsByTagName ('tbody')[0];
+
+      thead.innerHTML = '';
+      print_thead (thead, freshmen_cs.header);
+
+      tbody.innerHTML = '';
+      for (var i=0; i < freshmen_cs.body.length; i++)
+         print_tbody (tbody, freshmen_cs.body[i]);
+   }
+
+   function swap_value_array (arr, i, j) {
+      let tmp;
+      tmp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = tmp;
+   }
+
+   function display_sorted_gpa_table (key) {
+      if (! freshmen_cs.body[0].hasOwnProperty (key))
+         return ;
+
+      var table = document.getElementById ('test-a');
+      var thead = table.getElementsByTagName ('thead')[0];
+      var tbody = table.getElementsByTagName ('tbody')[0];
+
+      let arr_index = new Array (freshmen_cs.body.length);
+      for (let i=0; i < arr_index.length; i++)
+         arr_index[i] = i;
+
+      console.log (freshmen_cs.body);
+      for (var i=0; i < arr_index.length; i++) {
+         var index_max, index_min;
+         var index_arr_min;
+
+         // console.log (arr_index);
+
+         // if ( i >= arr_index.length - i )
+         //    break;
+
+         index_min = arr_index [i];
+         index_arr_min = i;
+         // index_max = arr_index [arr_index.length - i - 1];
+
+         for (var j=i+1; j < freshmen_cs.body.length; j++) {
+            // Below code only for test purposes
+
+            // console.log ("Local test: index_min = " + index_min + ", arr_index[j] = " + arr_index[j] + " <>???????????????");
+            // console.log ("----------> freshmen_cs.body [index_min][key] = " + freshmen_cs.body [index_min][key]);
+            // console.log ("----------> freshmen_cs.body [arr_index[j]][key] = " + freshmen_cs.body [arr_index[j]][key]);
+
+            if (freshmen_cs.body [index_min][key][0] > freshmen_cs.body [arr_index[j]][key][0]) {
+               index_min = arr_index[j];
+               index_arr_min = j;
+            }
+         }
+
+
+         // for (var j=i+1; j < freshmen_cs.body.length - i; j++) {
+         //    if (freshmen_cs.body [index_min][key] > freshmen_cs.body [arr_index[j]][key]) index_min = j;
+         //    else if (freshmen_cs.body [index_max][key] < freshmen_cs.body [arr_index[j]][key]) index_max = j;
+         // }
+
+         if ( index_arr_min != i)
+            swap_value_array (arr_index, i, index_arr_min);
+
+         // console.log ("ending swapping fest : " + i + "\nindex_min = " + index_min + " --> " + freshmen_cs.body [index_min][key]);
+         // console.log ("============================================== ");
+
+         // Correct swaping if index_max = i, because of the previous swap of the minimal value
+         // if ( index_max != arr_index.length-i-1 )
+         // swap_value_array (arr_index, arr_index.length-i-1, index_max);
+      }
+
+      thead.innerHTML = '';
+      print_thead (thead, freshmen_cs.header);
+
+      tbody.innerHTML = '';
+      for (var i=0; i < freshmen_cs.body.length; i++)
+         print_tbody (tbody, freshmen_cs.body[arr_index[i]]);
+
+      // display_unfiltered_table ();
+   }
+
+   function init_table () {
+      init_data_table ();
+      display_unfiltered_table ();
+   }
+
+
+
+   window.addEventListener ('load', init_table );
+</script>
